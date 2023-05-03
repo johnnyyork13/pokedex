@@ -1,0 +1,152 @@
+@font-face {
+    font-family: pokedex;
+    src: url(./assets/font.ttf);
+}
+
+html {
+    width: 98vw;
+    height: 98vh;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#pokedexContainer {
+    width: 1000px;
+    height: fit-content;
+    position: relative;
+}
+
+#pokedex {
+    width: 100%;
+    position: relative;
+    z-index: 0;
+}
+
+#pokeTextBox {
+    z-index: 1;
+    position: absolute;
+    bottom: 80px;
+    left: 45px;
+    height: 50px;
+    width: 175px;
+    border-radius: 10px;
+    background-color: yellow;
+    padding-left: 10px;
+    font-size: 1.3em;
+    font-weight: bolder;
+    color: black;
+}
+
+#submitBtn {
+    position: absolute;
+    z-index: 1;
+    bottom: 158px;
+    left: 50px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: rgb(125, 125, 242);
+    font-weight: bolder;
+}
+
+#pokeImg {
+    position: absolute;
+    left: 160px;
+    top: 270px;
+    z-index: 3;
+    width: 150px;
+}
+
+.dataContainer {
+    width: 350px;
+    height: 195px;
+    z-index: 1;
+    color: rgb(51, 51, 51);
+    font-size: .8em;
+    padding: 10px;
+    padding-top: 0px;
+    background-color: rgb(208, 208, 208);
+    border-radius: 15px;
+    border-top: 10px solid rgb(64, 1, 86);
+    position: absolute;
+    right: 58px;
+    bottom: 275px;
+    font-family: pokedex;
+    line-height: 20px;
+}
+
+#dataName {
+    position: absolute;
+    left: 10px;
+}
+
+#dataHeight {
+    position: absolute;
+    right: 10px;
+}
+
+#data {
+    position: absolute;
+    top: 70px;
+    width: 90%;
+}
+
+.typeContainer {
+    position: absolute;
+    right: 75px;
+    bottom: 106px;
+    z-index: 3;
+    width: 345px;
+    height: 55px;
+}
+
+#typeOne, #typeTwo {
+    width: 44%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    color: white;
+    font-weight: bolder;
+}
+
+#typeOne {
+    left: 0;
+}
+
+#typeTwo {
+    right: 0;
+}
+
+.arrowButtonsContainer {
+    position: absolute;
+    z-index: 3;
+    width: 105px;
+    height: 110px;
+    opacity: .5;
+    bottom: 85px;
+    left: 285px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#leftArrow, #rightArrow {
+    width: 35px;
+    height: 40px;
+}
+
+#leftArrow:hover, #rightArrow:hover {
+    background-color: white;
+    opacity: .8;
+    cursor: pointer;
+}
+
+
+
