@@ -18,6 +18,7 @@ let currentPokemon;
 
 
 async function fetchPokemon(name) {
+    try {
     const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     const pokemonData = await pokemon.json();
     const pokedex = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
@@ -43,6 +44,15 @@ async function fetchPokemon(name) {
 
     currentPokemon = pokemonData.id;
     pokeTextBox.value = pokemonData.name.toUpperCase();
+    data.style.textAlign = 'left';
+    } catch (err) {
+        data.textContent = "ERROR: INVALID POKÈMON";
+        dataName.textContent = '';
+        dataHeight.textContent = '';
+        pokeImg.src = '';
+        data.style.textAlign = 'center';
+    }
+    
 }
 
 
