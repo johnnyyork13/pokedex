@@ -11,12 +11,20 @@
     <div id="pokedexContainer">
         <img id="pokedex" src="./assets/pokedex.png">
         <img id="pokeImg" src="">
-        <input type="text" id="pokeTextBox" placeholder="Enter Pokèmon">
+        <input type="text" id="pokeTextBox" placeholder="Enter Pokèmon" value="Bulbasaur">
         <button id="submitBtn">Search</button>
 
         <div class="dataContainer">
             <p id="dataName"></p><p id="dataHeight"></p>
             <p id="data"></p>
+            <div id="statsContainer">
+                <p id="hp">HP</p>
+                <p id="attack">ATK</p>
+                <p id="defense">DEF</p>
+                <p id="specialAttack">S-ATK</p>
+                <p id="specialDefense">S-DEF</p>
+                <p id="speed">SP</p>
+            </div>
         </div>
 
         <div class="typeContainer">
@@ -27,6 +35,11 @@
         <div class="arrowButtonsContainer">
             <div id="leftArrow"></div>
             <div id="rightArrow"></div>
+        </div>
+
+        <div class="statsBtnContainer">
+            <div id="statsOpen"></div>
+            <div id="statsClose"></div>
         </div>
     </div>
 

@@ -53,6 +53,11 @@ body {
     font-weight: bolder;
 }
 
+#submitBtn:hover {
+    background-color: rgb(172, 172, 242);
+    cursor: pointer;
+}
+
 #pokeImg {
     position: absolute;
     left: 160px;
@@ -148,5 +153,35 @@ body {
     cursor: pointer;
 }
 
+#statsContainer {
+    visibility: hidden;
+}
 
+.statsBtnContainer {
+    position: absolute;
+    width: 230px;
+    height: 35px;
+    bottom: 210px;
+    right: 188px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#statsOpen, #statsClose {
+    width: 48%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    border-radius: 10px;
+}
+
+#statsOpen:hover, #statsClose:hover {
+    background-color: rgb(116, 116, 116);
+    opacity: .4;
+    cursor: pointer;
+}
 

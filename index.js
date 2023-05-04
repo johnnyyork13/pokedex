@@ -8,17 +8,28 @@ const typeOne = document.getElementById('typeOne');
 const typeTwo = document.getElementById('typeTwo');
 const leftArrow = document.getElementById('leftArrow');
 const rightArrow = document.getElementById('rightArrow');
+const statsContainer = document.getElementById('statsContainer');
+const statsOpen = document.getElementById('statsOpen');
+const statsClose = document.getElementById('statsClose');
 
+//stats
+const hp = document.getElementById('hp');
+const attack = document.getElementById('attack');
+const defense = document.getElementById('defense');
+const specialAttack = document.getElementById('specialAttack');
+const specialDefense = document.getElementById('specialDefense');
+const speed = document.getElementById('speed');
 
 let height;
 let weight;
 let flavorText;
 let pokemonTypes;
 let currentPokemon;
-
+let pokemonObject;
 
 async function fetchPokemon(name) {
     try {
+    statsContainer.style.visibility = 'hidden';
     const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     const pokemonData = await pokemon.json();
     const pokedex = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
@@ -27,16 +38,24 @@ async function fetchPokemon(name) {
     dataName.textContent = getID(pokemonData) + getName(pokemonData);
     dataHeight.innerHTML = getHeight(pokemonData.height) +
         `<br>` + getWeight(pokemonData.weight);
-    if (pokemonData.id >= 722) {
-        flavorText = pokedexData.flavor_text_entries[7].flavor_text;
-    } else if (pokemonData.id >= 650) {
-        flavorText = pokedexData.flavor_text_entries[6].flavor_text;
-    } else if (pokemonData.id >= 494) {
-        flavorText = pokedexData.flavor_text_entries[4].flavor_text;
-    } else {
-        flavorText = pokedexData.flavor_text_entries[0].flavor_text;
+    try {
+        if (pokemonData.id >= 900) {
+            flavorText = pokedexData.flavor_text_entries[0].flavor_text;
+        } else if (pokemonData.id >= 722) {
+            flavorText = pokedexData.flavor_text_entries[7].flavor_text;
+        } else if (pokemonData.id >= 650) {
+            flavorText = pokedexData.flavor_text_entries[6].flavor_text;
+        } else if (pokemonData.id >= 494) {
+            flavorText = pokedexData.flavor_text_entries[4].flavor_text;
+        } else {
+            flavorText = pokedexData.flavor_text_entries[0].flavor_text;
+        }
+        data.textContent = flavorText;
+    } catch {
+        data.textContent = 'Insufficient Data for Pokedex Entry.'
+        console.log(pokemonData);
     }
-    data.textContent = flavorText;
+    
 
     pokemonTypes = getType(pokemonData);
     typeOne.textContent = pokemonTypes[0];
@@ -45,6 +64,8 @@ async function fetchPokemon(name) {
     currentPokemon = pokemonData.id;
     pokeTextBox.value = pokemonData.name.toUpperCase();
     data.style.textAlign = 'left';
+
+    pokemonObject = pokemonData;
     } catch (err) {
         data.textContent = "ERROR: INVALID POKÈMON";
         dataName.textContent = '';
@@ -52,7 +73,6 @@ async function fetchPokemon(name) {
         pokeImg.src = '';
         data.style.textAlign = 'center';
     }
-    
 }
 
 
@@ -63,7 +83,6 @@ submitBtn.addEventListener('click', function() {
 rightArrow.addEventListener('click', function() {
     if (currentPokemon !== undefined) {
         fetchPokemon(currentPokemon + 1);
-
     }
 })
 
@@ -71,6 +90,16 @@ leftArrow.addEventListener('click', function() {
     if (currentPokemon !== undefined && currentPokemon > 1) {
         fetchPokemon(currentPokemon - 1);
     }
+})
+
+statsOpen.addEventListener('click', function(){
+    clearData();
+    loadStats(pokemonObject);
+    statsContainer.style.visibility = 'visible';
+})
+
+statsClose.addEventListener('click', function() {
+    fetchPokemon(currentPokemon);
 })
 
 
@@ -122,4 +151,25 @@ function getType(data) {
     }
 
     return [typeOne.toUpperCase(), typeTwo.toUpperCase()];
+}
+
+function loadStats(data) {
+    let dataStats = data.stats;
+    try {
+        hp.textContent = 'HP: ' + dataStats[0].base_stat;
+        attack.textContent = 'ATK: ' + dataStats[1].base_stat;
+        defense.textContent = 'DEF: ' + dataStats[2].base_stat;
+        specialAttack.textContent = 'SP-ATK: ' + dataStats[3].base_stat;
+        specialDefense.textContent = 'SP-DEF: ' + dataStats[4].base_stat;
+        speed.textContent = 'SPEED: ' + dataStats[5].base_stat; 
+    } catch (err) {
+        console.log(err);
+    }
+    
+}
+
+function clearData() {
+    dataName.textContent = '';
+    dataHeight.textContent = '';
+    data.textContent = '';
 }
