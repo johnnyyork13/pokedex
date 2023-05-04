@@ -53,7 +53,6 @@ async function fetchPokemon(name) {
         data.textContent = flavorText;
     } catch {
         data.textContent = 'Insufficient Data for Pokedex Entry.'
-        console.log(pokemonData);
     }
     
 
