@@ -185,3 +185,14 @@ body {
     cursor: pointer;
 }
 
+#gmaxBtn {
+    position: absolute;
+    bottom: 170px;
+    left: 125px;
+    z-index: 3;
+    width: 60px;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
+}
+

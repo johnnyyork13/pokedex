@@ -11,6 +11,7 @@ const rightArrow = document.getElementById('rightArrow');
 const statsContainer = document.getElementById('statsContainer');
 const statsOpen = document.getElementById('statsOpen');
 const statsClose = document.getElementById('statsClose');
+const gmaxBtn = document.getElementById('gmaxBtn');
 
 //stats
 const hp = document.getElementById('hp');
@@ -26,6 +27,8 @@ let flavorText;
 let pokemonTypes;
 let currentPokemon;
 let pokemonObject;
+let gmax;
+let gmaxResponse;
 
 async function fetchPokemon(name) {
     try {
@@ -34,6 +37,14 @@ async function fetchPokemon(name) {
     const pokemonData = await pokemon.json();
     const pokedex = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
     const pokedexData = await pokedex.json();
+    try {
+        gmax = await fetch(pokedexData.varieties[1].pokemon.url);
+        gmaxResponse = await gmax.json();
+        console.log(gmaxResponse);
+    } catch (err) {
+        console.log(err);
+    }
+
     pokeImg.src = pokemonData.sprites.front_default;
     dataName.textContent = getID(pokemonData) + getName(pokemonData);
     dataHeight.innerHTML = getHeight(pokemonData.height) +
@@ -66,6 +77,7 @@ async function fetchPokemon(name) {
 
     pokemonObject = pokemonData;
     } catch (err) {
+        console.log(err);
         data.textContent = "ERROR: INVALID POKÈMON";
         dataName.textContent = '';
         dataHeight.textContent = '';
@@ -74,6 +86,14 @@ async function fetchPokemon(name) {
     }
 }
 
+function showGMAX(data) {
+    pokeImg.src = data.sprites.front_default;
+    gmaxResponse = null;
+}
+
+gmaxBtn.addEventListener('click', function() {
+    showGMAX(gmaxResponse);
+})
 
 submitBtn.addEventListener('click', function() {
     fetchPokemon(pokeTextBox.value.toLowerCase());
