@@ -155,9 +155,6 @@ body {
     cursor: pointer;
 }
 
-#statsContainer {
-    visibility: hidden;
-}
 
 .statsBtnContainer {
     position: absolute;
@@ -183,7 +180,6 @@ body {
 
 #statsOpen:hover, #statsClose:hover {
     background-color: rgb(116, 116, 116);
-    opacity: .4;
     cursor: pointer;
 }
 

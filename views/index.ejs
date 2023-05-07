@@ -11,47 +11,45 @@
     <form id="pokedexContainer" method="post">
         <img id="pokedex" src="/public/assets/pokedex.png">
         <img id="pokeImg" src=<%=locals.pokeImgSrc%>>
+        <button type="submit" id="submitBtn" name="action" value="searchBtn">Search</button>
+        <button type="submit" id="gmaxBtn" name="action" value="gmaxBtn">GMAX</button>
         <input type="text" id="pokeTextBox" name="pokeTextBox" placeholder="Enter Pokèmon" value=<%=locals.pokeName%>>
-        <button type="submit" id="submitBtn">Search</button>
 
-        <button type="submit" id="gmaxBtn">GMAX</button>
 
         <div class="dataContainer">
-            <p id="dataName"></p><p id="dataHeight"></p>
-            <p id="data"></p>
+            <p id="dataName"><%=locals.dataName%></p><p id="dataHeight"><%-locals.dataHeight%></p>
+            <p id="data"><%=locals.dataDescription%></p>
             <div id="statsContainer">
-                <p id="hp">HP</p>
-                <p id="attack">ATK</p>
-                <p id="defense">DEF</p>
-                <p id="specialAttack">S-ATK</p>
-                <p id="specialDefense">S-DEF</p>
-                <p id="speed">SP</p>
+                <p id="hp"><%=locals.hp%></p>
+                <p id="attack"><%=locals.atk%></p>
+                <p id="defense"><%=locals.def%></p>
+                <p id="specialAttack"><%=locals.sAtk%></p>
+                <p id="specialDefense"><%=locals.sDef%></p>
+                <p id="speed"><%=locals.sp%></p>
             </div>
         </div>
 
         <div class="typeContainer">
-            <div id="typeOne"></div>
-            <div id="typeTwo"></div>
+            <div id="typeOne"><%=locals.typeOne%></div>
+            <div id="typeTwo"><%=locals.typeTwo%></div>
         </div>
 
         <div class="arrowButtonsContainer">
-            <button type="submit" id="leftArrow"></button>
-            <button type="submit" id="rightArrow"></button>
+            <button type="submit" id="leftArrow" name="action" value="leftBtn"></button>
+            <button type="submit" id="rightArrow" name="action" value="rightBtn"></button>
         </div>
 
         <div class="statsBtnContainer">
-            <div id="statsOpen"></div>
-            <div id="statsClose"></div>
+            <button id="statsOpen" name="action" value="statsOpenBtn">STATS</button>
+            <button id="statsClose" name="action" value="statsCloseBtn">GENERAL</button>
         </div>
     </form>
 
     <audio id="pokemonCry" autoplay>
-        <source src="">
+        <source src="<%=locals.pokemonCry%>">
     </audio>
 
     <p id="isEnglish"><%=locals.isEnglish%></p>
-    <script src="/public/assets/main.js"></script>
-    <script src="/public/assets/helpers.js"></script>
     <script src="/public/assets/index.js"></script>
 
 </body>
