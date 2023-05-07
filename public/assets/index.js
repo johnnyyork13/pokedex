@@ -13,6 +13,7 @@ const statsOpen = document.getElementById('statsOpen');
 const statsClose = document.getElementById('statsClose');
 const gmaxBtn = document.getElementById('gmaxBtn');
 const pokemonCry = document.getElementById('pokemonCry');
+const isEnglish = document.getElementById('isEnglish');
 
 //stats
 const hp = document.getElementById('hp');
@@ -32,30 +33,34 @@ let gmax;
 let gmaxResponse;
 let pokedexData;
 
+/* STATEMENTS THAT NEED HOMES
+
+
+*/
+
 async function fetchPokemon(name) {
     try {
-    statsContainer.style.visibility = 'hidden';
-    const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-    const pokemonData = await pokemon.json();
-    const pokedex = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
-    pokedexData = await pokedex.json();
+        statsContainer.style.visibility = 'hidden';
+        const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        const pokemonData = await pokemon.json();
+        const pokedex = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
+        pokedexData = await pokedex.json();
 
-    pokeImg.src = pokemonData.sprites.front_default;
-    dataName.textContent = getID(pokemonData) + getName(pokemonData);
-    dataHeight.innerHTML = getHeight(pokemonData.height) +
-        `<br>` + getWeight(pokemonData.weight);
+        pokeImg.src = pokemonData.sprites.front_default;
+        dataName.textContent = getID(pokemonData) + getName(pokemonData);
+        dataHeight.innerHTML = getHeight(pokemonData.height) +
+            `<br>` + getWeight(pokemonData.weight);
 
-    getFlavorText(pokemonData, pokedexData);
-    getType(pokemonData);
-    // checkLanguage(pokedexData.flavor_text_entries);
+        getFlavorText(pokemonData, pokedexData);
+        getType(pokemonData);
+        // checkLanguage(pokedexData.flavor_text_entries);
 
-    currentPokemon = pokemonData.id;
-    pokeTextBox.value = pokemonData.name.toUpperCase();
-    data.style.textAlign = 'left';
+        currentPokemon = pokemonData.id;
+        pokeTextBox.value = pokemonData.name.toUpperCase();
+        data.style.textAlign = 'left';
 
-    pokemonObject = pokemonData;
-    fetchAudio(pokemonData);
-    console.log(pokedexData);
+        pokemonObject = pokemonData;
+        fetchAudio(pokemonData);
     } catch (err) {
         console.log(err);
         data.textContent = "ERROR: INVALID POKÈMON";

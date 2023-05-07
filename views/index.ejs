@@ -8,15 +8,13 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="pokedexContainer">
+    <form id="pokedexContainer" method="post">
         <img id="pokedex" src="/public/assets/pokedex.png">
-        <img id="pokeImg" src="">
-        <input type="text" id="pokeTextBox" placeholder="Enter Pokèmon" value="caterpie">
-        <form method="POST">
-            <button id="submitBtn">Search</button>
-        </form>
+        <img id="pokeImg" src=<%=locals.pokeImgSrc%>>
+        <input type="text" id="pokeTextBox" name="pokeTextBox" placeholder="Enter Pokèmon" value=<%=locals.pokeName%>>
+        <button type="submit" id="submitBtn">Search</button>
 
-        <button id="gmaxBtn">GMAX</button>
+        <button type="submit" id="gmaxBtn">GMAX</button>
 
         <div class="dataContainer">
             <p id="dataName"></p><p id="dataHeight"></p>
@@ -37,15 +35,15 @@
         </div>
 
         <div class="arrowButtonsContainer">
-            <div id="leftArrow"></div>
-            <div id="rightArrow"></div>
+            <button type="submit" id="leftArrow"></button>
+            <button type="submit" id="rightArrow"></button>
         </div>
 
         <div class="statsBtnContainer">
             <div id="statsOpen"></div>
             <div id="statsClose"></div>
         </div>
-    </div>
+    </form>
 
     <audio id="pokemonCry" autoplay>
         <source src="">
